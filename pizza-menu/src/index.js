@@ -62,7 +62,7 @@ function App() {
 // Components
 // function Header
 
-// component
+// components
 function Pizza() {
   return (
     <div>

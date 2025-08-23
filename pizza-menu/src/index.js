@@ -81,19 +81,22 @@ function Menu() {
   // const pizzas = []; // emmpty array is truthy value
   const pizzas = pizzaData;
   const numPizzas = pizzas.length; // that;s why we have to check for their length
+  // const numPizzas = 0; // that;s why we have to check for their length
 
   return (
     <main className="menu">
       <h2>Our Menu</h2>
 
       {/* Conditional rendering */}
-      {numPizzas > 0 && (
+      {numPizzas > 0 ? (
         <ul className="pizzas">
           {pizzas.map((pizza) => (
             // <Pizza name={pizza.name} photoName={pizza.photoName} />
             <Pizza pizzaObj={pizza} key={pizza.name} />
           ))}
         </ul>
+      ) : (
+        <p>We're still working on our menu, Please come back later</p>
       )}
 
       {/* <ul className="pizzas">
@@ -137,7 +140,7 @@ function Pizza(props) {
 // Component
 function Footer() {
   const hour = new Date().getHours();
-  const openHour = 6;
+  const openHour = 20;
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
   console.log(isOpen);
@@ -148,11 +151,15 @@ function Footer() {
   return (
     <footer className="footer">
       {/* v47 conditional rednering with && - short circuting */}
-      {isOpen && (
+      {isOpen ? (
         <div className="order">
           <p>We're Open until {closeHour}:00. Come visit us or order online</p>
           <button className="btn">Order</button>
         </div>
+      ) : (
+        <p>
+          We're happy to welcome you between {openHour}:00 and {closeHour}:00{" "}
+        </p>
       )}
     </footer>
   );

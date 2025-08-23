@@ -59,6 +59,16 @@ function App() {
   );
 }
 
+// function App() {
+//   return (
+//     <>
+//       <Header />
+//       <Menu />
+//       <Footer />
+//     </>
+//   );
+// }
+
 // Components
 // function Header
 
@@ -89,12 +99,19 @@ function Menu() {
 
       {/* Conditional rendering */}
       {numPizzas > 0 ? (
-        <ul className="pizzas">
-          {pizzas.map((pizza) => (
-            // <Pizza name={pizza.name} photoName={pizza.photoName} />
-            <Pizza pizzaObj={pizza} key={pizza.name} />
-          ))}
-        </ul>
+        <>
+          <p>
+            Authentic Italian cusine, & creative dishes to choose from. All from
+            our stone oven, all organic, all delicious.
+          </p>
+
+          <ul className="pizzas">
+            {pizzas.map((pizza) => (
+              // <Pizza name={pizza.name} photoName={pizza.photoName} />
+              <Pizza pizzaObj={pizza} key={pizza.name} />
+            ))}
+          </ul>
+        </>
       ) : (
         <p>We're still working on our menu, Please come back later</p>
       )}

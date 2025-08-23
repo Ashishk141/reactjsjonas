@@ -76,15 +76,32 @@ function Header() {
 
 // Parent Component
 function Menu() {
+  // redner list oonly when we have some pizzas
+  // const pizzas = pizzaData;
+  // const pizzas = []; // emmpty array is truthy value
+  const pizzas = pizzaData;
+  const numPizzas = pizzas.length; // that;s why we have to check for their length
+
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <ul className="pizzas">
+
+      {/* Conditional rendering */}
+      {numPizzas > 0 && (
+        <ul className="pizzas">
+          {pizzas.map((pizza) => (
+            // <Pizza name={pizza.name} photoName={pizza.photoName} />
+            <Pizza pizzaObj={pizza} key={pizza.name} />
+          ))}
+        </ul>
+      )}
+
+      {/* <ul className="pizzas">
         {pizzaData.map((pizza) => (
           // <Pizza name={pizza.name} photoName={pizza.photoName} />
           <Pizza pizzaObj={pizza} key={pizza.name} />
         ))}
-      </ul>
+      </ul> */}
       {/* <Pizza
         name="Pizza Spinaci"
         ingredients="Tomato, mozarella, spinach, and ricotta cheese"
@@ -120,7 +137,7 @@ function Pizza(props) {
 // Component
 function Footer() {
   const hour = new Date().getHours();
-  const openHour = 12;
+  const openHour = 6;
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
   console.log(isOpen);
@@ -130,7 +147,13 @@ function Footer() {
 
   return (
     <footer className="footer">
-      {new Date().toLocaleTimeString()} We're currently open
+      {/* v47 conditional rednering with && - short circuting */}
+      {isOpen && (
+        <div className="order">
+          <p>We're Open until {closeHour}:00. Come visit us or order online</p>
+          <button className="btn">Order</button>
+        </div>
+      )}
     </footer>
   );
   //   return React.createElement("footer", null, "We're currently open");

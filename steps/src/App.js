@@ -11,6 +11,7 @@ export default function App() {
   // const arr = useState(1); // creating step varaible
   // console.log(arr);
   const [step, setStep] = useState(1);
+  const [test, setTest] = useState({ name: "Jonas" });
 
   function handlePrevious() {
     // alert("Previous");
@@ -20,6 +21,10 @@ export default function App() {
   function handleNext() {
     // alert("Next");
     if (step < 3) setStep(step + 1);
+
+    // test.name = "fred"; // BAD PRACTICE
+    // step = step + 1;
+    setTest({ name: "Fred" });
   }
   return (
     <div className="steps">
@@ -30,7 +35,7 @@ export default function App() {
       </div>
 
       <p className="message">
-        Step {step} : {messages[step - 1]}
+        Step {step} : {messages[step - 1]} {test.name}
       </p>
 
       <div className="buttons">

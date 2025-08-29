@@ -7,6 +7,15 @@ const messages = [
 ];
 
 export default function App() {
+  return (
+    <div>
+      <Steps />
+      <Steps />
+    </div>
+  );
+}
+
+function Steps() {
   // const step = 2;
   // const arr = useState(1); // creating step varaible
   // console.log(arr);
@@ -23,7 +32,7 @@ export default function App() {
     // alert("Next");
     if (step < 3) {
       setStep((s) => s + 1);
-      setStep((s) => s + 1);
+      // setStep((s) => s + 1);
     }
 
     // test.name = "fred"; // BAD PRACTICE
@@ -32,7 +41,7 @@ export default function App() {
   }
 
   return (
-    <>
+    <div>
       <button className="close" onClick={() => setIsOpen((is) => !is)}>
         &times;
       </button>
@@ -65,6 +74,6 @@ export default function App() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }

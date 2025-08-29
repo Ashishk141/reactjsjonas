@@ -16,12 +16,15 @@ export default function App() {
 
   function handlePrevious() {
     // alert("Previous");
-    if (step > 1) setStep(step - 1);
+    if (step > 1) setStep((s) => s - 1);
   }
 
   function handleNext() {
     // alert("Next");
-    if (step < 3) setStep(step + 1);
+    if (step < 3) {
+      setStep((s) => s + 1);
+      setStep((s) => s + 1);
+    }
 
     // test.name = "fred"; // BAD PRACTICE
     // step = step + 1;
@@ -30,7 +33,7 @@ export default function App() {
 
   return (
     <>
-      <button className="close" onClick={() => setIsOpen(!isOpen)}>
+      <button className="close" onClick={() => setIsOpen((is) => !is)}>
         &times;
       </button>
       {isOpen && (

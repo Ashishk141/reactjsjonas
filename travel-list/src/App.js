@@ -19,11 +19,32 @@ function Logo() {
   return <h1>🌴 Far Away 💼</h1>;
 }
 
+// modified
 function Form() {
+  // Create Event Handler
+  function handleSubmit(e) {
+    e.preventDefault(); // submit without page reloading
+    // console.log("Submitted");
+    console.log(e);
+  }
+
   return (
-    <div className="add-form">
+    <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your 😍 trip?</h3>
-    </div>
+      <select>
+        {/* <option value={1}>1</option>
+        <option value={2}>2</option>
+        <option value={3}>3</option> */}
+        {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (
+          <option value={num} key={num}>
+            {num}
+          </option>
+        ))}
+      </select>
+
+      <input type="text" placeholder="Item..."></input>
+      <button>Add</button>
+    </form>
   );
 }
 
@@ -33,7 +54,7 @@ function PackingList() {
       <ul>
         {/* map just iterate over the array and return the JSX */}
         {initialItems.map((item) => (
-          <Item item={item} />
+          <Item item={item} key={item.id} />
         ))}
       </ul>
     </div>

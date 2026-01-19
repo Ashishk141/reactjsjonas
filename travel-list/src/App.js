@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const initialItems = [
   { id: 1, description: "Passports", quantity: 2, packed: true },
   { id: 2, description: "Socks", quantity: 12, packed: true },
@@ -21,17 +23,33 @@ function Logo() {
 
 // modified
 function Form() {
+  const [description, setDescription] = useState("TEST");
+  const [quantity, setQunaity] = useState(1);
+
   // Create Event Handler
   function handleSubmit(e) {
     e.preventDefault(); // submit without page reloading
     // console.log("Submitted");
     console.log(e);
+
+    // if not description dont do anything
+    if (!description) return;
+
+    const newItem = { description, quantity, packed: false, id: Date.now() };
+    console.log(newItem);
+
+    //after submit form, form should go instial state,
+    setDescription(""); // set Description to its intial state
+    setQunaity(1); // set Quanitty to its inital stati
   }
 
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your 😍 trip?</h3>
-      <select>
+      <select
+        value={quantity}
+        onChange={(e) => setQunaity(Number(e.target.value))}
+      >
         {/* <option value={1}>1</option>
         <option value={2}>2</option>
         <option value={3}>3</option> */}
@@ -42,7 +60,12 @@ function Form() {
         ))}
       </select>
 
-      <input type="text" placeholder="Item..."></input>
+      <input
+        type="text"
+        placeholder="Item..."
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      ></input>
       <button>Add</button>
     </form>
   );
